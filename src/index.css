@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-handwriting: 'Caveat', cursive;
+
+  /* Soft Pastel Palette - Gentle & Warm */
+  --bg-primary: #fff8f8;
+  --bg-secondary: #fef0f2;
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --card-border: rgba(255, 225, 230, 0.7);
+  --card-shadow: 0 12px 35px -5px rgba(230, 160, 180, 0.18), 0 4px 12px rgba(220, 140, 160, 0.08);
+
+  --accent-soft: #f7a8b8;
+  --accent-rose: #e66780;
+  --accent-blush: #fed7e2;
+  --accent-gold: #d4af37;
+  --accent-warm: #fef3c7;
+  --accent-lavender: #f3e8ff;
+
+  --text-primary: #3b2835;
+  --text-secondary: #6e5264;
+  --text-muted: #9c7f92;
+
+  --ease-gentle: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-soft-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Twilight Mode (Subtle Night Glow) */
+[data-theme='twilight'] {
+  --bg-primary: #1f1824;
+  --bg-secondary: #2b1f31;
+  --card-bg: rgba(45, 33, 53, 0.75);
+  --card-border: rgba(180, 130, 190, 0.25);
+  --card-shadow: 0 12px 40px -5px rgba(0, 0, 0, 0.4), 0 0 20px rgba(230, 103, 128, 0.15);
+
+  --accent-soft: #f497aa;
+  --accent-rose: #fb7185;
+  --accent-blush: #4c2d42;
+  --accent-gold: #fcd34d;
+  --accent-warm: #3d2a3e;
+  --accent-lavender: #3b284d;
+
+  --text-primary: #fff1f4;
+  --text-secondary: #dfcbd7;
+  --text-muted: #a88fa2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.8s var(--ease-gentle), color 0.8s var(--ease-gentle);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* Background Atmosphere */
+.ambient-glow-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.6;
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: floatOrb 18s ease-in-out infinite alternate;
+}
+
+.glow-orb-1 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(254, 215, 226, 0.6) 0%, rgba(255, 240, 243, 0) 70%);
+  top: -100px;
+  left: -100px;
+}
+
+.glow-orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(243, 232, 255, 0.5) 0%, rgba(255, 245, 250, 0) 70%);
+  bottom: 5%;
+  right: -100px;
+  animation-duration: 22s;
+  animation-delay: -5s;
+}
+
+.glow-orb-3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(254, 243, 199, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
+  top: 40%;
+  left: 30%;
+  animation-duration: 25s;
+  animation-delay: -10s;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 30px) scale(1.08); }
+  100% { transform: translate(-30px, 50px) scale(0.95); }
+}
+
+/* Glassmorphism Classes */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  border-radius: 24px;
+  transition: transform 0.4s var(--ease-gentle), box-shadow 0.4s var(--ease-gentle), border-color 0.4s var(--ease-gentle);
+}
+
+.glass-card:hover {
+  box-shadow: 0 16px 45px -5px rgba(230, 140, 160, 0.25), 0 6px 16px rgba(220, 120, 140, 0.12);
+}
+
+/* Typography Helpers */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-handwriting {
+  font-family: var(--font-handwriting);
+}
+
+/* Soft Buttons */
+.btn-gentle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.35s var(--ease-gentle);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gentle-primary {
+  background: linear-gradient(135deg, #e66780, #f78ba2);
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(230, 103, 128, 0.35);
+}
+
+.btn-gentle-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(230, 103, 128, 0.45);
+}
+
+.btn-gentle-secondary {
+  background: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.btn-gentle-secondary:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
+  border-color: var(--accent-soft);
+}
+
+/* Breathing animation for gentle elements */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.04); opacity: 1; }
+}
+
+.animate-breathe {
+  animation: breathe 5s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: gentleFloat 4.5s ease-in-out infinite;
+}
+
+/* Custom delicate scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(230, 103, 128, 0.25);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(230, 103, 128, 0.4);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s var(--ease-gentle) forwards;
+}
